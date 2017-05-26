@@ -2,4 +2,4 @@
 
 Requirements can be found in src/components/App.js.
 
-This example shows how to use React to generate, add, update and delete items of a list. These are all common scenarios in our daily React development life, so it's worth reinforcing my knowledge on them.
+This example shows how to use React to manipulate a list. List manipulation is a common scenario in daily React development life, so it's worth reinforcing my knowledge on them.
