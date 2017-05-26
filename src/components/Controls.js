@@ -22,6 +22,12 @@ class Controls extends Component {
 		this.refs.updateName.value = "";
 	}		
 
+	handleSearchItem = () => {
+		const searchId = this.refs.searchId.value;
+		console.log(searchId);
+		this.props.searchItem(searchId);	
+	}
+
 	render() {
 		const { 
 			sortRecentToOldist, 
@@ -47,7 +53,9 @@ class Controls extends Component {
 				<input type="text" ref="updateId" placeholder="Enter an id" />
 				<input type="text" ref="updateName" placeholder="Enter a name" />
 				<button className="btn-primary" onClick={this.handleUpdateItem}>Update an Item</button>				
-				<hr />				
+				<hr />		
+				<input type="text" ref="searchId" onChange={this.handleSearchItem} placeholder="Search by an id" />
+				<hr />							
 			</div>
 		</div>
 		);

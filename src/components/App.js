@@ -53,6 +53,11 @@ class App extends Component {
     this.setState({list: newList});
   }
 
+  searchItem = (id) => {
+    const newList = ListAPI.searchItem(this.state.list, id);
+    this.setState({list: newList}); 
+  }
+
   componentDidMount() {
     this.setState({list: ListAPI.generateList()});
   }
@@ -67,7 +72,8 @@ class App extends Component {
                   resetList={this.resetList}
                   deleteItem={this.deleteItem}
                   addItem={this.addItem}
-                  updateItem={this.updateItem} />
+                  updateItem={this.updateItem}
+                  searchItem={this.searchItem} />
         <ItemList list={list} />
       </div>
     );
