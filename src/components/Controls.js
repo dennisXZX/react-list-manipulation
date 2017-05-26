@@ -14,6 +14,14 @@ class Controls extends Component {
 		this.refs.newName.value = "";
 	}	
 
+	handleUpdateItem = () => {
+		const updateId = this.refs.updateId.value;
+		const updateName = this.refs.updateName.value;
+		this.props.updateItem(updateId, updateName);
+		this.refs.updateId.value = "";
+		this.refs.updateName.value = "";
+	}		
+
 	render() {
 		const { 
 			sortRecentToOldist, 
@@ -28,12 +36,18 @@ class Controls extends Component {
 				<button className="btn-primary" onClick={sortRecentToOldist}>Sort (most recent to oldest)</button>
 				<button className="btn-primary" onClick={sortOldistToRecent}>Sort (most oldest to recent)</button>
 				<button className="btn-primary" onClick={resetList}>Reset List</button>
+				<hr />				
 				<input type="text" ref="deleteId" placeholder="Enter an id" />
 				<button className="btn-primary" onClick={this.handleDeleteItem}>Delete an Item</button>
 				<hr />
 				<input type="text" ref="newId" placeholder="Enter an id" />
 				<input type="text" ref="newName" placeholder="Enter a name" />
 				<button className="btn-primary" onClick={this.handleAddItem}>Add an Item</button>				
+				<hr />
+				<input type="text" ref="updateId" placeholder="Enter an id" />
+				<input type="text" ref="updateName" placeholder="Enter a name" />
+				<button className="btn-primary" onClick={this.handleUpdateItem}>Update an Item</button>				
+				<hr />				
 			</div>
 		</div>
 		);

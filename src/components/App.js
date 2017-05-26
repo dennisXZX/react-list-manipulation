@@ -48,6 +48,11 @@ class App extends Component {
     this.setState({list: newList});
   }
 
+  updateItem = (id, name) => {
+    const newList = ListAPI.updateItem(this.state.list, id, name);
+    this.setState({list: newList});
+  }
+
   componentDidMount() {
     this.setState({list: ListAPI.generateList()});
   }
@@ -61,7 +66,8 @@ class App extends Component {
                   sortOldistToRecent={this.sortOldistToRecent}
                   resetList={this.resetList}
                   deleteItem={this.deleteItem}
-                  addItem={this.addItem} />
+                  addItem={this.addItem}
+                  updateItem={this.updateItem} />
         <ItemList list={list} />
       </div>
     );

@@ -41,5 +41,15 @@ export default {
 			timestamp: newDate
 		});
 		return list;
+	},
+	updateItem: function(list, id, name) {
+		return list.map((item) => {
+			if (item.id === id) {
+				item.name = name;
+				return item;
+			} else {
+				return item;
+			}
+		});
 	}
 }

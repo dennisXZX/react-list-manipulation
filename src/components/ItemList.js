@@ -27,9 +27,13 @@ class ItemList extends Component {
 		return (
 			<div>
 				<div className="row">
-					<div className="col-sm-4">ID</div>
-					<div className="col-sm-4">NAME</div>
-					<div className="col-sm-4">TIMESTAMP</div>
+					<h2 className="col-sm-12 list-title">SAMPLE LIST</h2>
+				</div>				
+				<hr />
+				<div className="row">
+					<div className="col-sm-4 list-captain">ID</div>
+					<div className="col-sm-4 list-captain">NAME</div>
+					<div className="col-sm-4 list-captain">TIMESTAMP</div>
 				</div>
 				{this._generateList(list)}		
 			</div>
