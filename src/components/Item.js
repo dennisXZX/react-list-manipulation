@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 
 class Item extends Component {
 	render() {
-		const { id, name, timestamp } = this.props;
+		const { id, name, timestamp, flag } = this.props;
 		return (
-			<div className="row">
+			<div className={`row ${flag}`}>
 				<div className="col-sm-4"> 
 					{id}
 				</div>

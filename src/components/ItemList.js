@@ -6,9 +6,17 @@ class ItemList extends Component {
 	_generateList = (list) => {
 		return (			
 			list.map((item) => {
-				return (
-					<Item key={item.id} {...item} />
-				)
+				// console.log(new Date(item.timestamp).getDay());
+				const date = item.timestamp.getDate();
+				if (date % 2 === 0) {
+					return (
+						<Item flag="evenItem" key={item.id} {...item} />
+					)
+				} else {
+					return (
+						<Item flag="oddItem" key={item.id} {...item} />
+					)
+				}
 			})
 		)
 	}

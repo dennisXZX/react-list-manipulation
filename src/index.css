@@ -10,4 +10,8 @@ body {
 
 .controls button, .controls input {
     margin-right: 10px;
-  }
+}
+
+.oddItem {
+  background-color: aliceblue;
+}
