@@ -21,11 +21,12 @@ import Controls from './Controls';
 class App extends Component {
   state = {
     list: [],
-    filterKeyword: ''
+    filterKeyword: '',
+    recentToOldist: true
   }
 
   componentDidMount() {
-    const initialList = ListAPI.sortListRecentToOldest(ListAPI.generateList());
+    const initialList = ListAPI.sortRecentToOldest(ListAPI.generateList());
 
     this.setState({
       list: initialList
@@ -39,17 +40,23 @@ class App extends Component {
   }
 
   sortRecentToOldist = () => {
-    const sortedList = ListAPI.sortListRecentToOldest(this.state.list);
-    this.setState({list: sortedList});
+    const sortedList = ListAPI.sortRecentToOldest(this.state.list);
+    this.setState({
+      list: sortedList,
+      recentToOldist: true
+    });
   }
 
   sortOldistToRecent = () => {
     const sortedList = ListAPI.sortOldistToRecent(this.state.list);
-    this.setState({list: sortedList});
+    this.setState({
+      list: sortedList,
+      recentToOldist: false
+    });
   }
 
   resetList = () => {
-    const newList = ListAPI.sortListRecentToOldest(ListAPI.generateList(this.state.list));
+    const newList = ListAPI.sortRecentToOldest(ListAPI.generateList(this.state.list));
     this.setState({list: newList});
   }
 
@@ -59,7 +66,13 @@ class App extends Component {
   }
 
   addItem = (id, name) => {
-    const newList = ListAPI.sortListRecentToOldest(ListAPI.addItem(this.state.list, id, name));
+    let newList;
+
+    if (this.state.recentToOldist === true) {
+      newList = ListAPI.sortRecentToOldest(ListAPI.addItem(this.state.list, id, name));
+    } else {
+      newList = ListAPI.sortOldistToRecent(ListAPI.addItem(this.state.list, id, name));      
+    }
     this.setState({list: newList});
   }
 

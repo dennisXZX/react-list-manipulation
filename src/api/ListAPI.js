@@ -15,13 +15,13 @@ export default {
 		this.resultList = generateData();
 		return this.resultList;
 	},
-	sortListRecentToOldest: function(list) {
+	sortRecentToOldest: function(list) {
     return list.sort((a, b) => {
       return (a.timestamp > b.timestamp ? -1 : 1) ;
     });
 	},
 	sortOldistToRecent: function(list) {
-		return this.sortListRecentToOldest(list).reverse();
+		return this.sortRecentToOldest(list).reverse();
 	},
 	deleteItem: function(list, id) {
 		const filterList = list.filter((item) => {
