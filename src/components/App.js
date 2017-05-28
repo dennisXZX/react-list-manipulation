@@ -25,8 +25,10 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const initialList = ListAPI.sortListRecentToOldest(ListAPI.generateList());
+
     this.setState({
-      list: ListAPI.generateList()
+      list: initialList
     });
   }
 
@@ -47,7 +49,7 @@ class App extends Component {
   }
 
   resetList = () => {
-    const newList = ListAPI.generateList(this.state.list);
+    const newList = ListAPI.sortListRecentToOldest(ListAPI.generateList(this.state.list));
     this.setState({list: newList});
   }
 
@@ -57,7 +59,7 @@ class App extends Component {
   }
 
   addItem = (id, name) => {
-    const newList = ListAPI.addItem(this.state.list, id, name);
+    const newList = ListAPI.sortListRecentToOldest(ListAPI.addItem(this.state.list, id, name));
     this.setState({list: newList});
   }
 
