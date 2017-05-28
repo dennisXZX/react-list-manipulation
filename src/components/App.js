@@ -20,7 +20,20 @@ import Controls from './Controls';
 
 class App extends Component {
   state = {
-    list: []
+    list: [],
+    filterKeyword: ''
+  }
+
+  componentDidMount() {
+    this.setState({
+      list: ListAPI.generateList()
+    });
+  }
+
+  filterKeywordChange = (str) => {
+    this.setState({
+      filterKeyword: str
+    });
   }
 
   sortRecentToOldist = () => {
@@ -53,28 +66,26 @@ class App extends Component {
     this.setState({list: newList});
   }
 
-  searchItem = (id) => {
-    const newList = ListAPI.searchItem(this.state.list, id);
-    this.setState({list: newList}); 
-  }
-
-  componentDidMount() {
-    this.setState({list: ListAPI.generateList()});
+  refilter = () => {
+    return (
+      this.state.list.filter((item) => {
+        return item.id.toLowerCase().includes(this.state.filterKeyword.toLowerCase());
+      })
+    )
   }
 
   render() {
-    const { list } = this.state;
-
     return (
       <div className="container">
         <Controls sortRecentToOldist={this.sortRecentToOldist}
                   sortOldistToRecent={this.sortOldistToRecent}
                   resetList={this.resetList}
+                  filterKeywordChange = {this.filterKeywordChange}
                   deleteItem={this.deleteItem}
                   addItem={this.addItem}
                   updateItem={this.updateItem}
-                  searchItem={this.searchItem} />
-        <ItemList list={list} />
+                  />
+        <ItemList refilter={this.refilter} />
       </div>
     );
   }

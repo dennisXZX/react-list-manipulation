@@ -51,14 +51,5 @@ export default {
 				return item;
 			}
 		});
-	},
-	searchItem: function(list, id) {
-		return list.filter((item) => {
-			if (item.id.includes(id)) {
-				return true;
-			} else {
-				return false;
-			}
-		});
 	}
 }

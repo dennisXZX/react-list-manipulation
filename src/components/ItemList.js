@@ -2,19 +2,29 @@ import React, { Component } from 'react';
 import Item from './Item';
 
 class ItemList extends Component {
+	state = {
+		displayedList: []
+	}
+
+	// when a new prop is passed from App component
+	// this method will be triggered to update the displayedList
+	componentWillReceiveProps(nextProps) {
+		this.setState({
+			displayedList: nextProps.refilter()
+		});
+	}
 
 	_generateList = (list) => {
-		return (			
+		return (
 			list.map((item) => {
-				// console.log(new Date(item.timestamp).getDay());
 				const date = item.timestamp.getDate();
 				if (date % 2 === 0) {
 					return (
-						<Item flag="evenItem" key={item.id} {...item} />
+						<Item flag="evenDate" key={item.id} {...item} />
 					)
 				} else {
 					return (
-						<Item flag="oddItem" key={item.id} {...item} />
+						<Item flag="oddDate" key={item.id} {...item} />
 					)
 				}
 			})
@@ -22,20 +32,18 @@ class ItemList extends Component {
 	}
 
 	render() {
-		const { list } = this.props;
-
 		return (
 			<div>
 				<div className="row">
 					<h2 className="col-sm-12 list-title">SAMPLE LIST</h2>
-				</div>				
+				</div>
 				<hr />
 				<div className="row">
 					<div className="col-sm-4 list-captain">ID</div>
 					<div className="col-sm-4 list-captain">NAME</div>
 					<div className="col-sm-4 list-captain">TIMESTAMP</div>
 				</div>
-				{this._generateList(list)}		
+				{this._generateList(this.state.displayedList)}
 			</div>
 		);
 	}
